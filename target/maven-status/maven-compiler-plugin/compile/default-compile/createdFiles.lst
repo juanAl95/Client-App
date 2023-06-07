@@ -1,0 +1,8 @@
+com\credibanco\CrudApp\DTO\UserDTOResponse.class
+com\credibanco\CrudApp\DTO\UserDTORequest.class
+com\credibanco\CrudApp\Controller\UsuarioController.class
+com\credibanco\CrudApp\CrudAppApplication.class
+com\credibanco\CrudApp\Service\IUsuarioService.class
+com\credibanco\CrudApp\Entity\Usuario.class
+com\credibanco\CrudApp\Repository\IUserRepository.class
+com\credibanco\CrudApp\Service\Impl\UsuarioImpl.class

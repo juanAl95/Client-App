@@ -1,20 +1,22 @@
 package com.credibanco.CrudApp.Service.Impl;
 
-import com.credibanco.CrudApp.DTO.UserDTORequest;
-import com.credibanco.CrudApp.DTO.UserDTOResponse;
-import com.credibanco.CrudApp.Entity.Usuario;
-import com.credibanco.CrudApp.Repository.IUserRepository;
-import com.credibanco.CrudApp.Service.IUsuarioService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.credibanco.CrudApp.Entity.Usuario;
+import com.credibanco.CrudApp.Repository.IUserRepository;
+import com.credibanco.CrudApp.Service.IUsuarioService;
+import com.credibanco.dependency.Library.Dto.UserDTOResponse;
+import com.credibanco.dependency.Library.Dto.UserDTORequest;
+
+@Service
 public class UsuarioImpl implements IUsuarioService {
     Logger logger = LoggerFactory.getLogger(UsuarioImpl.class);
 
@@ -43,9 +45,11 @@ public class UsuarioImpl implements IUsuarioService {
 
     }
 
+
+
     @Override
     public List<UserDTOResponse> readUser(Long id) {
-        UserDTOResponse userResponse = new UserDTOResponse();
+        UserDTORequest userResponse = new UserDTORequest();
         List<Usuario> listUsuario= userRepo.findAll();
         return listUsuario.stream().map(user -> {
             UserDTOResponse response = new UserDTOResponse();
@@ -54,10 +58,14 @@ public class UsuarioImpl implements IUsuarioService {
         }).collect(Collectors.toList());
     }
 
+    
+    
     @Override
-    public UserDTOResponse update(UserDTORequest usuarioDTORequest) {
+    public UserDTOResponse update(UserDTORequest userDTORequest) {
         return null;
     }
+    
+    
 
     @Override
     public UserDTOResponse deleteUser(Long id) {
@@ -70,22 +78,27 @@ public class UsuarioImpl implements IUsuarioService {
 
             if (usuarioDelete != null) {
                 userRepo.deleteById(id);
-                response.setMessage("El usuario ha sido eliminado exitosamente.");
+                logger.info("El usuario ha sido eliminado exitosamente.");
 
             }else {
-                response.setMessage("No se encontró ningún usuario con el ID especificado.");
+                logger.info("No se encontró ningún usuario con el ID especificado.");
             }
                 logger.info("-----El ususario ha sido eliminado-------- ");
 
         } catch (Exception e) {
             logger.info("-----Error----" + e);
-            response.setMessage("Ocurrió un error al eliminar el usuario.");
-        }
+            logger.info("Ocurrió un error al eliminar el usuario.");
+            
+            }
+        
         return response;
-    }
+        
+     }
 
     @Override
     public Usuario readUsuario(Long id) {
         return null;
     }
+
+	
 }

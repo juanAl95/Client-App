@@ -1,15 +1,18 @@
 package com.credibanco.CrudApp.Service;
 
-import com.credibanco.CrudApp.DTO.UserDTORequest;
-import com.credibanco.CrudApp.DTO.UserDTOResponse;
-import com.credibanco.CrudApp.Entity.Usuario;
-
 import java.util.List;
 
+import com.credibanco.CrudApp.Entity.Usuario;
+import com.credibanco.dependency.Library.Dto.UserDTORequest;
+import com.credibanco.dependency.Library.Dto.UserDTOResponse;
+
+
+
 public interface IUsuarioService {
-    UserDTOResponse createUser (UserDTORequest usuarioDTORequest) ;
+    
+	UserDTOResponse createUser (UserDTORequest usuarioDTORequest);
     List<UserDTOResponse> readUser (Long id);
-    UserDTOResponse update (UserDTORequest usuarioDTORequest);
+    UserDTOResponse update(UserDTORequest userDTORequest);
     UserDTOResponse deleteUser (Long id );
     Usuario readUsuario(Long id);
 
